@@ -1,5 +1,7 @@
-#include <glfw3.h>
-#include <glm.hpp>
+#include <GLAD/glad.h>
+#include <GLFW/glfw3.h>
+
+#include <GLM/glm.hpp>
 
 int main(void)
 {
