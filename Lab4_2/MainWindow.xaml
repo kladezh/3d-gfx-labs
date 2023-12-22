@@ -1,0 +1,15 @@
+﻿<Window x:Class="Lab4_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab4_2"
+        xmlns:opentk="clr-namespace:OpenTK;assembly=OpenTK.GLControl"
+        mc:Ignorable="d"
+        Title="Lab4_2" Width="1024" Height="720">
+    <Grid>
+        <WindowsFormsHost Initialized="WindowsFormsHost_Initialized">
+            <opentk:GLControl x:Name="glControl" Load="GLControl_Load" Paint="GLControl_Paint" Resize="GLControl_Resize" />
+        </WindowsFormsHost>
+    </Grid>
+</Window>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Lab4"
         xmlns:opentk="clr-namespace:OpenTK;assembly=OpenTK.GLControl"
         mc:Ignorable="d"
-        Title="ObjLoader" Height="250" Width="268">
+        Title="Lab4" Width="1024" Height="720">
     <Grid>
         <WindowsFormsHost Initialized="WindowsFormsHost_Initialized">
             <opentk:GLControl x:Name="glControl" Load="GLControl_Load" Paint="GLControl_Paint" Resize="GLControl_Resize" />
