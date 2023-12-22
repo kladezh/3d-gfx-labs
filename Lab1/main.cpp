@@ -26,8 +26,7 @@ const char* fragmentShaderSource = R"(
         #version 460
         in vec3 color;
         out vec4 frag_color;
-        void main()
-        {
+        void main() {
             frag_color = vec4(color, 1.0);
         }
     )";
@@ -114,7 +113,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(640, 480, "Hello OpenGL", NULL, NULL);
+    window = glfwCreateWindow(g_windowSize.x, g_windowSize.y, "Hello OpenGL", NULL, NULL);
     if (!window)
     {
         std::cerr << "Window creating failed!" << std::endl;
