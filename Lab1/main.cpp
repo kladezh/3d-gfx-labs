@@ -127,26 +127,21 @@ int main(void)
     glfwSetWindowSizeCallback(window, glfwWindowSizeCallback);
     glfwSetKeyCallback(window, glfwKeyCallback);
 
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
-
     // Инициализация GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "GLAD initialization failed!" << std::endl;
         return -1;
     }
 
-
-    // Компиляция шейдеров
-    GLuint vertexShader = CompileShader(GL_VERTEX_SHADER, vertexShaderSource);
-    GLuint fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
-
-
     // Выводим информацию о рендерере и версии OpenGL
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
     std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
     glClearColor(0, 0, 0, 0); // Устанавливаем цвет очистки экрана
+
+    // Компиляция шейдеров
+    GLuint vertexShader = CompileShader(GL_VERTEX_SHADER, vertexShaderSource);
+    GLuint fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
 
     // Создание программы и привязка к ней шейдеров
     GLuint shader_program = glCreateProgram();
@@ -158,28 +153,28 @@ int main(void)
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    GLuint points_vbo = 0; // Буфер вершин для первого треугольника
-    glGenBuffers(1, &points_vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
+    GLuint VBO_points = 0; // Буфер вершин для первого треугольника
+    glGenBuffers(1, &VBO_points);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO_points);
     glBufferData(GL_ARRAY_BUFFER, sizeof(point), point, GL_STATIC_DRAW);
 
-    GLuint colors_vbo = 0; // Буфер цветов для вершин
-    glGenBuffers(1, &colors_vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, colors_vbo);
+    GLuint VBO_colors = 0; // Буфер цветов для вершин
+    glGenBuffers(1, &VBO_colors);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
     glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
 
-    GLuint vao = 0;
-    glGenVertexArrays(1, &vao); // Генерация VAO
-    glBindVertexArray(vao);     // Привязка VAO
+    GLuint VAO = 0;
+    glGenVertexArrays(1, &VAO); // Генерация VAO
+    glBindVertexArray(VAO);     // Привязка VAO
 
     // Активация и настройка массива вершин
     glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO_points);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
     // Активация и настройка массива цветов
     glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, colors_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
     // Основной цикл отрисовки
@@ -189,13 +184,18 @@ int main(void)
 
         glUseProgram(shader_program); // Использование программы
 
-        glBindVertexArray(vao); // Привязка VAO
+        glBindVertexArray(VAO); // Привязка VAO
         glDrawArrays(GL_TRIANGLES, 0, 6); // Отрисовка треугольников
 
         glfwSwapBuffers(window); // Переключение буферов
 
         glfwPollEvents(); // Проверка событий
     }
+
+    // Освобождаем ресурсы
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO_points);
+    glDeleteBuffers(1, &VBO_colors);
 
     glfwTerminate();
     return 0;
