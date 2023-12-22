@@ -1,0 +1,34 @@
+#version 460 core
+
+layout(quads) in; // указываем, что входные данные - квады
+
+in gl_PerVertex // входные данные с вершинами
+{
+  vec4 gl_Position; // позици€ вершины
+} gl_in[];
+
+out gl_PerVertex // выходные данные с вершинами
+{
+  vec4 gl_Position; // позици€ вершины
+};
+
+layout(std140, binding = 0) uniform TransformBlock // блок трансформации
+{
+  mat4 MVP; // матрица проекции-вида-модели
+} Transform;
+
+vec4 interpolate(in vec4 v0, in vec4 v1, in vec4 v2, in vec4 v3) // функци€ интерпол€ции
+{
+  vec4 a = mix(v0, v1, gl_TessCoord.x); // интерполируем между первой и второй вершинами по x
+  vec4 b = mix(v3, v2, gl_TessCoord.x); // интерполируем между третьей и четвертой вершинами по x
+  return mix(a, b, gl_TessCoord.y); // интерполируем между полученными значени€ми по y
+}
+
+void main() // главна€ функци€
+{
+  vec4 pos = interpolate(gl_in[0].gl_Position, 
+               gl_in[1].gl_Position, 
+               gl_in[2].gl_Position, 
+               gl_in[3].gl_Position); // интерполируем позиции вершин квада
+  gl_Position = Transform.MVP * pos; // примен€ем матрицу трансформации к позиции вершины
+}
