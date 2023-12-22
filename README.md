@@ -28,7 +28,7 @@
 2. Выберите:
    - Language - C/C++;
    - Specification - OpenGL;
-   - API -> gl - Version 3.3;
+   - API -> gl - Version 4.5;
    - Profile - Core;
    - Options - Generate a loader;
 3. Нажмите кнопку **Generate** и скачайте архив glad.zip и распакуйте его.
