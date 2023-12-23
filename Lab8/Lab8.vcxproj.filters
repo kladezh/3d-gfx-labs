@@ -13,10 +13,112 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{30b3a322-9107-4b6b-909f-0bd5b619a1b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerlinNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PerlinNoise.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\EU.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\greenTexture.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\heightMap.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\map.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\ter.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\download.jfif">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\fragShader.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\depthVert.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\depthFrag.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\plainFrag.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\plainVert.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\SMFragShader.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\SMVertShader.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\tessControlShader.tcs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\tessEvaluationShader.tes">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\VertShader.vs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
