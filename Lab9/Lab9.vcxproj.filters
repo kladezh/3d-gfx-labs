@@ -22,4 +22,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\cube.cont" />
+    <None Include="shaders\cube.eval" />
+    <None Include="shaders\cube.frag" />
+    <None Include="shaders\cube.vert" />
+  </ItemGroup>
 </Project>

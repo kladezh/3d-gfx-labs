@@ -133,6 +133,12 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\cube.cont" />
+    <None Include="shaders\cube.eval" />
+    <None Include="shaders\cube.frag" />
+    <None Include="shaders\cube.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
