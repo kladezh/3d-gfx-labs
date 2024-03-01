@@ -9,7 +9,7 @@
 #include <iostream>
 
 
-// вершинный шейдер
+// ГўГҐГ°ГёГЁГ­Г­Г»Г© ГёГҐГ©Г¤ГҐГ°
 const char* vertexShaderSource = R"(
         #version 460
         layout(location = 0) in vec3 vertex_position;
@@ -19,9 +19,9 @@ const char* vertexShaderSource = R"(
             color = vertex_color;
             gl_Position = vec4(vertex_position, 1.0);
         }
-    )";
+    )"; 
 
-// фрагментный шейдер
+// ГґГ°Г ГЈГ¬ГҐГ­ГІГ­Г»Г© ГёГҐГ©Г¤ГҐГ°
 const char* fragmentShaderSource = R"(
         #version 460
         in vec3 color;
@@ -32,7 +32,7 @@ const char* fragmentShaderSource = R"(
     )";
 
 
-// Функция для компиляции и проверки ошибок в шейдере
+// Г”ГіГ­ГЄГ¶ГЁГї Г¤Г«Гї ГЄГ®Г¬ГЇГЁГ«ГїГ¶ГЁГЁ ГЁ ГЇГ°Г®ГўГҐГ°ГЄГЁ Г®ГёГЁГЎГ®ГЄ Гў ГёГҐГ©Г¤ГҐГ°ГҐ
 GLuint CompileShader(GLenum type, const char* source)
 {
     GLuint shader = glCreateShader(type);
@@ -52,44 +52,44 @@ GLuint CompileShader(GLenum type, const char* source)
 }
 
 
-// Массив координат вершин для двух треугольников
+// ГЊГ Г±Г±ГЁГў ГЄГ®Г®Г°Г¤ГЁГ­Г ГІ ГўГҐГ°ГёГЁГ­ Г¤Г«Гї Г¤ГўГіГµ ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ®Гў
 GLfloat point[] = {
-    // Первый треугольник
-    -0.5f,  0.7f, 0.0f,  // Верхний левый угол
-     0.5f,  0.7f, 0.0f,  // Верхний правый угол
-     0.0f,  0.1f, 0.0f,  // Нижний центральный угол
+    // ГЏГҐГ°ГўГ»Г© ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄ
+    -0.5f,  0.7f, 0.0f,  // Г‚ГҐГ°ГµГ­ГЁГ© Г«ГҐГўГ»Г© ГіГЈГ®Г«
+     0.5f,  0.7f, 0.0f,  // Г‚ГҐГ°ГµГ­ГЁГ© ГЇГ°Г ГўГ»Г© ГіГЈГ®Г«
+     0.0f,  0.1f, 0.0f,  // ГЌГЁГ¦Г­ГЁГ© Г¶ГҐГ­ГІГ°Г Г«ГјГ­Г»Г© ГіГЈГ®Г«
 
-     // Второй треугольник
-     -0.2f, -0.3f, 0.0f,  // Нижний правый угол
-      0.2f, -0.3f, 0.0f,  // Нижний левый угол
-      0.0f, -0.9f, 0.0f   // Нижний центральный угол
+     // Г‚ГІГ®Г°Г®Г© ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄ
+     -0.2f, -0.3f, 0.0f,  // ГЌГЁГ¦Г­ГЁГ© ГЇГ°Г ГўГ»Г© ГіГЈГ®Г«
+      0.2f, -0.3f, 0.0f,  // ГЌГЁГ¦Г­ГЁГ© Г«ГҐГўГ»Г© ГіГЈГ®Г«
+      0.0f, -0.9f, 0.0f   // ГЌГЁГ¦Г­ГЁГ© Г¶ГҐГ­ГІГ°Г Г«ГјГ­Г»Г© ГіГЈГ®Г«
 };
 
-// Массив цветов для вершин
+// ГЊГ Г±Г±ГЁГў Г¶ГўГҐГІГ®Гў Г¤Г«Гї ГўГҐГ°ГёГЁГ­
 GLfloat colors[] = {
-    1.0f, 0.0f, 0.0f,  // Верхний правый угол (красный)
-    1.0f, 1.0f, 0.0f,  // Нижний правый угол (желтый)
-    0.0f, 0.0f, 1.0f,  // Верхний левый угол (синий)
+    1.0f, 0.0f, 0.0f,  // Г‚ГҐГ°ГµГ­ГЁГ© ГЇГ°Г ГўГ»Г© ГіГЈГ®Г« (ГЄГ°Г Г±Г­Г»Г©)
+    1.0f, 1.0f, 0.0f,  // ГЌГЁГ¦Г­ГЁГ© ГЇГ°Г ГўГ»Г© ГіГЈГ®Г« (Г¦ГҐГ«ГІГ»Г©)
+    0.0f, 0.0f, 1.0f,  // Г‚ГҐГ°ГµГ­ГЁГ© Г«ГҐГўГ»Г© ГіГЈГ®Г« (Г±ГЁГ­ГЁГ©)
 
-    1.0f, 1.0f, 0.0f,  // Нижний правый угол (желтый)
-    0.0f, 0.0f, 1.0f,  // Нижний левый угол (синий)
-    1.0f, 0.0f, 0.0f   // Верхний левый угол (красный)
+    1.0f, 1.0f, 0.0f,  // ГЌГЁГ¦Г­ГЁГ© ГЇГ°Г ГўГ»Г© ГіГЈГ®Г« (Г¦ГҐГ«ГІГ»Г©)
+    0.0f, 0.0f, 1.0f,  // ГЌГЁГ¦Г­ГЁГ© Г«ГҐГўГ»Г© ГіГЈГ®Г« (Г±ГЁГ­ГЁГ©)
+    1.0f, 0.0f, 0.0f   // Г‚ГҐГ°ГµГ­ГЁГ© Г«ГҐГўГ»Г© ГіГЈГ®Г« (ГЄГ°Г Г±Г­Г»Г©)
 };
 
 static int shoulderAngle = 0, elbowAngle = 0;
 
-// Размеры окна
+// ГђГ Г§Г¬ГҐГ°Г» Г®ГЄГ­Г 
 glm::ivec2 g_windowSize(640, 480);
 
-// Callback-функция для изменения размеров окна
+// Callback-ГґГіГ­ГЄГ¶ГЁГї Г¤Г«Гї ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї Г°Г Г§Г¬ГҐГ°Г®Гў Г®ГЄГ­Г 
 void glfwWindowSizeCallback(GLFWwindow* window, int width, int height)
 {
     g_windowSize.x = width;
     g_windowSize.y = height;
-    glViewport(0, 0, width, height); // Устанавливаем область рисования OpenGL
+    glViewport(0, 0, width, height); // Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ Г®ГЎГ«Г Г±ГІГј Г°ГЁГ±Г®ГўГ Г­ГЁГї OpenGL
 }
 
-// Callback-функция для обработки нажатия клавиш
+// Callback-ГґГіГ­ГЄГ¶ГЁГї Г¤Г«Гї Г®ГЎГ°Г ГЎГ®ГІГЄГЁ Г­Г Г¦Г ГІГЁГї ГЄГ«Г ГўГЁГё
 void glfwKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
@@ -108,7 +108,7 @@ int main(void)
         
     GLFWwindow* window;
 
-    // Устанавливаем требуемую версию OpenGL и профиль
+    // Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ ГІГ°ГҐГЎГіГҐГ¬ГіГѕ ГўГҐГ°Г±ГЁГѕ OpenGL ГЁ ГЇГ°Г®ГґГЁГ«Гј
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -123,76 +123,76 @@ int main(void)
 
     glfwMakeContextCurrent(window);
 
-    // Устанавливаем callback-функции
+    // Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ callback-ГґГіГ­ГЄГ¶ГЁГЁ
     glfwSetWindowSizeCallback(window, glfwWindowSizeCallback);
     glfwSetKeyCallback(window, glfwKeyCallback);
 
-    // Инициализация GLAD
+    // Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "GLAD initialization failed!" << std::endl;
         return -1;
     }
 
-    // Выводим информацию о рендерере и версии OpenGL
+    // Г‚Г»ГўГ®Г¤ГЁГ¬ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ Г® Г°ГҐГ­Г¤ГҐГ°ГҐГ°ГҐ ГЁ ГўГҐГ°Г±ГЁГЁ OpenGL
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
     std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
-    glClearColor(0, 0, 0, 0); // Устанавливаем цвет очистки экрана
+    glClearColor(0, 0, 0, 0); // Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ Г¶ГўГҐГІ Г®Г·ГЁГ±ГІГЄГЁ ГЅГЄГ°Г Г­Г 
 
-    // Компиляция шейдеров
+    // ГЉГ®Г¬ГЇГЁГ«ГїГ¶ГЁГї ГёГҐГ©Г¤ГҐГ°Г®Гў
     GLuint vertexShader = CompileShader(GL_VERTEX_SHADER, vertexShaderSource);
     GLuint fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
 
-    // Создание программы и привязка к ней шейдеров
+    // Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЇГ°Г®ГЈГ°Г Г¬Г¬Г» ГЁ ГЇГ°ГЁГўГїГ§ГЄГ  ГЄ Г­ГҐГ© ГёГҐГ©Г¤ГҐГ°Г®Гў
     GLuint shader_program = glCreateProgram();
     glAttachShader(shader_program, vertexShader);
     glAttachShader(shader_program, fragmentShader);
     glLinkProgram(shader_program);
 
-    // Удаление шейдеров после линковки программы
+    // Г“Г¤Г Г«ГҐГ­ГЁГҐ ГёГҐГ©Г¤ГҐГ°Г®Гў ГЇГ®Г±Г«ГҐ Г«ГЁГ­ГЄГ®ГўГЄГЁ ГЇГ°Г®ГЈГ°Г Г¬Г¬Г»
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    GLuint VBO_points = 0; // Буфер вершин для первого треугольника
+    GLuint VBO_points = 0; // ГЃГіГґГҐГ° ГўГҐГ°ГёГЁГ­ Г¤Г«Гї ГЇГҐГ°ГўГ®ГЈГ® ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
     glGenBuffers(1, &VBO_points);
     glBindBuffer(GL_ARRAY_BUFFER, VBO_points);
     glBufferData(GL_ARRAY_BUFFER, sizeof(point), point, GL_STATIC_DRAW);
 
-    GLuint VBO_colors = 0; // Буфер цветов для вершин
+    GLuint VBO_colors = 0; // ГЃГіГґГҐГ° Г¶ГўГҐГІГ®Гў Г¤Г«Гї ГўГҐГ°ГёГЁГ­
     glGenBuffers(1, &VBO_colors);
     glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
     glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
 
     GLuint VAO = 0;
-    glGenVertexArrays(1, &VAO); // Генерация VAO
-    glBindVertexArray(VAO);     // Привязка VAO
+    glGenVertexArrays(1, &VAO); // ГѓГҐГ­ГҐГ°Г Г¶ГЁГї VAO
+    glBindVertexArray(VAO);     // ГЏГ°ГЁГўГїГ§ГЄГ  VAO
 
-    // Активация и настройка массива вершин
+    // ГЂГЄГІГЁГўГ Г¶ГЁГї ГЁ Г­Г Г±ГІГ°Г®Г©ГЄГ  Г¬Г Г±Г±ГЁГўГ  ГўГҐГ°ГёГЁГ­
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, VBO_points);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Активация и настройка массива цветов
+    // ГЂГЄГІГЁГўГ Г¶ГЁГї ГЁ Г­Г Г±ГІГ°Г®Г©ГЄГ  Г¬Г Г±Г±ГЁГўГ  Г¶ГўГҐГІГ®Гў
     glEnableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, VBO_colors);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Основной цикл отрисовки
+    // ГЋГ±Г­Г®ГўГ­Г®Г© Г¶ГЁГЄГ« Г®ГІГ°ГЁГ±Г®ГўГЄГЁ
     while (!glfwWindowShouldClose(window))
     {
-        glClear(GL_COLOR_BUFFER_BIT); // Очистка буфера цвета
+        glClear(GL_COLOR_BUFFER_BIT); // ГЋГ·ГЁГ±ГІГЄГ  ГЎГіГґГҐГ°Г  Г¶ГўГҐГІГ 
 
-        glUseProgram(shader_program); // Использование программы
+        glUseProgram(shader_program); // Г€Г±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ ГЇГ°Г®ГЈГ°Г Г¬Г¬Г»
 
-        glBindVertexArray(VAO); // Привязка VAO
-        glDrawArrays(GL_TRIANGLES, 0, 6); // Отрисовка треугольников
+        glBindVertexArray(VAO); // ГЏГ°ГЁГўГїГ§ГЄГ  VAO
+        glDrawArrays(GL_TRIANGLES, 0, 6); // ГЋГІГ°ГЁГ±Г®ГўГЄГ  ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ®Гў
 
-        glfwSwapBuffers(window); // Переключение буферов
+        glfwSwapBuffers(window); // ГЏГҐГ°ГҐГЄГ«ГѕГ·ГҐГ­ГЁГҐ ГЎГіГґГҐГ°Г®Гў
 
-        glfwPollEvents(); // Проверка событий
+        glfwPollEvents(); // ГЏГ°Г®ГўГҐГ°ГЄГ  Г±Г®ГЎГ»ГІГЁГ©
     }
 
-    // Освобождаем ресурсы
+    // ГЋГ±ГўГ®ГЎГ®Г¦Г¤Г ГҐГ¬ Г°ГҐГ±ГіГ°Г±Г»
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO_points);
     glDeleteBuffers(1, &VBO_colors);
